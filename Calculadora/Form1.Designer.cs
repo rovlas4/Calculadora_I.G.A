@@ -270,6 +270,7 @@
             this.Controls.Add(this.zero);
             this.Name = "Form1";
             this.Text = "Calculadora HOD-001";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

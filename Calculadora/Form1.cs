@@ -10,12 +10,14 @@ using System.Windows.Forms;
 
 namespace Calculadora
 {
+    // Este es un comentario, se guardara papá?
     public partial class Form1 : Form
     {
         List<string> symbolList = new List<string>();
         int num1 = 0;
         bool signPressed = false;
         bool numberPressed = false;
+        int algo;
 
         public Form1()
         {
@@ -142,6 +144,11 @@ namespace Calculadora
         {
             signPressed = true;
             mainDisplay.Text += "÷";
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
