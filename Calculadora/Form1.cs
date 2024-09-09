@@ -13,7 +13,6 @@ namespace Calculadora
     public partial class Form1 : Form
     {
         List<string> symbolList = new List<string>();
-        int num1 = 0;
         bool signPressed = false;
         bool numberPressed = false;
         int operation = 0;
@@ -37,7 +36,7 @@ namespace Calculadora
 
         private void mainDisplay_TextChanged(object sender, EventArgs e)
         {
-            if (mainDisplay.Text.StartsWith("0") && mainDisplay.Text.Length > 1)
+            if (mainDisplay.Text.StartsWith("0") && mainDisplay.Text.Length > 1 && !symbolList.Any(c => mainDisplay.Text.EndsWith(c)))
             {
                 mainDisplay.Text = mainDisplay.Text.Remove(0, 1);
             }
@@ -47,8 +46,9 @@ namespace Calculadora
                 if (mainDisplay.Text.EndsWith(var))
                 {
                     secondDisplay.Text = mainDisplay.Text;
-                    mainDisplay.Text = mainDisplay.Text.Substring(0, mainDisplay.Text.Length-1);
-                    num1 = Int32.Parse(mainDisplay.Text);
+                    if (!mainDisplay.Text.Equals("0"))
+                        mainDisplay.Text = mainDisplay.Text.Substring(0, mainDisplay.Text.Length-1);
+                    break;
                 }
             }
 
@@ -168,7 +168,7 @@ namespace Calculadora
                         operation = 0;
                         break;
                     case 2:
-                        result = (Int32.Parse(mainDisplay.Text)) - (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
+                        result = ((Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)) - Int32.Parse(mainDisplay.Text)));
                         secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
                         mainDisplay.Text = result.ToString();
                         operation = 0;
