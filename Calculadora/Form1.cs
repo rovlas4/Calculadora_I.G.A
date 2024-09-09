@@ -10,14 +10,13 @@ using System.Windows.Forms;
 
 namespace Calculadora
 {
-    // Este es un comentario, se guardara papá?
     public partial class Form1 : Form
     {
         List<string> symbolList = new List<string>();
         int num1 = 0;
         bool signPressed = false;
         bool numberPressed = false;
-        int algo;
+        int operation = 0;
 
         public Form1()
         {
@@ -126,29 +125,76 @@ namespace Calculadora
         {
             signPressed = true;
             mainDisplay.Text += "+";
+            operation = 1;
         }
 
         private void minus_Click(object sender, EventArgs e)
         {
             signPressed = true;
             mainDisplay.Text += "-";
+            operation = 2;
         }
 
         private void times_Click(object sender, EventArgs e)
         {
             signPressed = true;
             mainDisplay.Text += "×";
+            operation = 3;
         }
 
         private void divide_Click(object sender, EventArgs e)
         {
             signPressed = true;
             mainDisplay.Text += "÷";
+            operation = 4;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void equal_Click(object sender, EventArgs e)
+        {
+            int result = 0;
+            if (!secondDisplay.Text.Equals(""))
+            {
+                switch (operation)
+                {
+                    case 1:
+                        result = (Int32.Parse(mainDisplay.Text)) + (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
+                        secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+                        mainDisplay.Text = result.ToString();
+                        operation = 0;
+                        break;
+                    case 2:
+                        result = (Int32.Parse(mainDisplay.Text)) - (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
+                        secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+                        mainDisplay.Text = result.ToString();
+                        operation = 0;
+                        break;
+                    case 3:
+                        result = (Int32.Parse(mainDisplay.Text)) * (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
+                        secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+                        mainDisplay.Text = result.ToString();
+                        operation = 0;
+                        break;
+                    case 4:
+                        if ((Int32.Parse(mainDisplay.Text)==0))
+                        {
+                            MessageBox.Show("No se puede dividir entre cero");
+                        }
+                        else
+                        {
+                            result = (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1))) / (Int32.Parse(mainDisplay.Text));
+                            secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+                            mainDisplay.Text = result.ToString();
+                            operation = 0;
+                        }
+                        break;
+                    default: break;
+                }
+            }
         }
     }
 }
