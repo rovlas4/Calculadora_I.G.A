@@ -16,7 +16,7 @@ namespace Calculadora
         bool signPressed = false;
         bool numberPressed = false;
         int operation = 0;
-
+        int totalSum = 0;
         public Form1()
         {
             InitializeComponent();
@@ -162,38 +162,54 @@ namespace Calculadora
                 switch (operation)
                 {
                     case 1:
-                        result = (Int32.Parse(mainDisplay.Text)) + (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
-                        secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
-                        mainDisplay.Text = result.ToString();
-                        operation = 0;
+                        addition(result);
                         break;
                     case 2:
-                        result = ((Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)) - Int32.Parse(mainDisplay.Text)));
-                        secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
-                        mainDisplay.Text = result.ToString();
-                        operation = 0;
+                        subtraction(result);
                         break;
                     case 3:
-                        result = (Int32.Parse(mainDisplay.Text)) * (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
-                        secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
-                        mainDisplay.Text = result.ToString();
-                        operation = 0;
+                        multiplication(result);
                         break;
                     case 4:
-                        if ((Int32.Parse(mainDisplay.Text)==0))
-                        {
-                            MessageBox.Show("No se puede dividir entre cero");
-                        }
-                        else
-                        {
-                            result = (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1))) / (Int32.Parse(mainDisplay.Text));
-                            secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
-                            mainDisplay.Text = result.ToString();
-                            operation = 0;
-                        }
+                        division(result);
                         break;
                     default: break;
                 }
+            }
+        }
+        private void addition(int result)
+        {
+            result = (Int32.Parse(mainDisplay.Text)) + (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
+            secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+            mainDisplay.Text = result.ToString();
+            totalSum += result;
+        }
+        private void subtraction(int result)
+        {
+            result = ((Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)) - Int32.Parse(mainDisplay.Text)));
+            secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+            mainDisplay.Text = result.ToString();
+            totalSum += result;
+        }
+        private void multiplication(int result)
+        {
+            result = (Int32.Parse(mainDisplay.Text)) * (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
+            secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+            mainDisplay.Text = result.ToString();
+            totalSum += result;
+        }
+        private void division(int result)
+        {
+            if ((Int32.Parse(mainDisplay.Text) == 0))
+            {
+                MessageBox.Show("No se puede dividir entre cero");
+            }
+            else
+            {
+                result = (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1))) / (Int32.Parse(mainDisplay.Text));
+                secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
+                mainDisplay.Text = result.ToString();
+                totalSum += result;
             }
         }
     }
