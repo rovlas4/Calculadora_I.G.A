@@ -47,6 +47,8 @@
             this.mainDisplay = new System.Windows.Forms.Label();
             this.secondDisplay = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.historial = new System.Windows.Forms.TextBox();
+            this.absoluteSum = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // zero
@@ -249,19 +251,43 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(118, 463);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(206, 75);
             this.button1.TabIndex = 20;
             this.button1.Text = "Historial";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // historial
+            // 
+            this.historial.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.historial.Location = new System.Drawing.Point(440, 50);
+            this.historial.Multiline = true;
+            this.historial.Name = "historial";
+            this.historial.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.historial.Size = new System.Drawing.Size(418, 407);
+            this.historial.TabIndex = 21;
+            // 
+            // absoluteSum
+            // 
+            this.absoluteSum.Enabled = false;
+            this.absoluteSum.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.absoluteSum.Location = new System.Drawing.Point(440, 470);
+            this.absoluteSum.Multiline = true;
+            this.absoluteSum.Name = "absoluteSum";
+            this.absoluteSum.Size = new System.Drawing.Size(418, 68);
+            this.absoluteSum.TabIndex = 22;
+            this.absoluteSum.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 600);
+            this.Controls.Add(this.absoluteSum);
+            this.Controls.Add(this.historial);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.secondDisplay);
             this.Controls.Add(this.mainDisplay);
@@ -310,6 +336,8 @@
         private System.Windows.Forms.Label mainDisplay;
         private System.Windows.Forms.Label secondDisplay;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox historial;
+        private System.Windows.Forms.TextBox absoluteSum;
     }
 }
 

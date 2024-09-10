@@ -18,6 +18,8 @@ namespace Calculadora
         bool equalPressed = false;
         int operation = 0;
         int totalSum = 0;
+        bool openClose = false;
+        bool equalRsult = false; 
         public Form1()
         {
             InitializeComponent();
@@ -72,54 +74,63 @@ namespace Calculadora
 
         private void one_Click(object sender, EventArgs e)
         {
+            equalRsult=false;
             numberPressed = true;
             mainDisplay.Text += "1";
         }
 
         private void two_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "2";
         }
 
         private void three_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "3";
         }
 
         private void four_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "4";
         }
 
         private void five_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "5";
         }
 
         private void six_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "6";
         }
 
         private void seven_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "7";
         }
 
         private void eight_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "8";
         }
 
         private void nine_Click(object sender, EventArgs e)
         {
+            equalRsult = false;
             numberPressed = true;
             mainDisplay.Text += "9";
         }
@@ -138,29 +149,45 @@ namespace Calculadora
         private void plus_Click(object sender, EventArgs e)
         {
             signPressed = true;
-            mainDisplay.Text += "+";
+            if (!mainDisplay.Text.Equals("") && equalRsult==false)
+            {
+                equal_Click(sender, e);
+            }
             operation = 1;
+            mainDisplay.Text += "+";
         }
 
         private void minus_Click(object sender, EventArgs e)
         {
             signPressed = true;
-            mainDisplay.Text += "-";
+            if (!mainDisplay.Text.Equals("") && equalRsult == false)
+            {
+                equal_Click(sender, e);
+            }
             operation = 2;
+            mainDisplay.Text += "-";
         }
 
         private void times_Click(object sender, EventArgs e)
         {
             signPressed = true;
-            mainDisplay.Text += "×";
+            if (!mainDisplay.Text.Equals("") && equalRsult == false)
+            {
+                equal_Click(sender, e);
+            }
             operation = 3;
+            mainDisplay.Text += "×";
         }
 
         private void divide_Click(object sender, EventArgs e)
         {
             signPressed = true;
-            mainDisplay.Text += "÷";
+            if (!mainDisplay.Text.Equals("") && equalRsult == false)
+            {
+                equal_Click(sender, e);
+            }
             operation = 4;
+            mainDisplay.Text += "÷";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -171,60 +198,92 @@ namespace Calculadora
         private void equal_Click(object sender, EventArgs e)
         {
             int result = 0;
+            equalRsult = true;
             if (!secondDisplay.Text.Equals(""))
             {
                 switch (operation)
                 {
                     case 1:
-                        addition(result);
+                        result=addition(result);
                         break;
                     case 2:
-                        subtraction(result);
+                        result=subtraction(result);
                         break;
                     case 3:
-                        multiplication(result);
+                        result = multiplication(result);
                         break;
                     case 4:
-                        division(result);
+                        result = division(result);
                         break;
                     default: break;
                 }
+                totalSum += result;
+                absoluteSum.Text = "SUMA = " + totalSum.ToString();
             }
             equalPressed = true;
         }
-        private void addition(int result)
+        private int addition(int result)
         {
+            historial.Text += secondDisplay.Text + mainDisplay.Text + "=";
             result = (Int32.Parse(mainDisplay.Text)) + (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
             secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
             mainDisplay.Text = result.ToString();
-            totalSum += result;
+            historial.Text += result.ToString()+Environment.NewLine;
+            return result;
         }
-        private void subtraction(int result)
+        private int subtraction(int result)
         {
+            historial.Text += secondDisplay.Text + mainDisplay.Text + "=";
             result = ((Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)) - Int32.Parse(mainDisplay.Text)));
             secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
             mainDisplay.Text = result.ToString();
-            totalSum += result;
+            historial.Text += result.ToString() + Environment.NewLine;
+            return result;
         }
-        private void multiplication(int result)
+        private int multiplication(int result)
         {
+            historial.Text += secondDisplay.Text + mainDisplay.Text + "=";
             result = (Int32.Parse(mainDisplay.Text)) * (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1)));
             secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
             mainDisplay.Text = result.ToString();
-            totalSum += result;
+            historial.Text += result.ToString() + Environment.NewLine;
+            return result;
         }
-        private void division(int result)
+        private int division(int result)
         {
             if ((Int32.Parse(mainDisplay.Text) == 0))
             {
                 MessageBox.Show("No se puede dividir entre cero");
+                clear();
             }
             else
             {
+                historial.Text += secondDisplay.Text + mainDisplay.Text + "=";
                 result = (Int32.Parse(secondDisplay.Text.Substring(0, secondDisplay.Text.Length - 1))) / (Int32.Parse(mainDisplay.Text));
                 secondDisplay.Text = secondDisplay.Text + mainDisplay.Text;
                 mainDisplay.Text = result.ToString();
-                totalSum += result;
+                historial.Text += result.ToString() + Environment.NewLine;
+                return result;
+            }
+            return result;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openClose == false)
+            {
+                this.Width = 665;
+                openClose = true;
+                historial.Visible = true;
+                absoluteSum.Visible = true;
+                absoluteSum.Text="SUMA = " + totalSum.ToString();
+            }
+            else
+            {
+                this.Width = 350;
+                openClose = false;
+                historial.Visible = false;
+                absoluteSum.Visible = false;
             }
         }
     }
