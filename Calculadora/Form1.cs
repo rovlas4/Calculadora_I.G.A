@@ -15,6 +15,7 @@ namespace Calculadora
         List<string> symbolList = new List<string>();
         bool signPressed = false;
         bool numberPressed = false;
+        bool equalPressed = false;
         int operation = 0;
         int totalSum = 0;
         public Form1()
@@ -36,6 +37,13 @@ namespace Calculadora
 
         private void mainDisplay_TextChanged(object sender, EventArgs e)
         {
+            if (numberPressed && equalPressed)
+            {
+                string last = mainDisplay.Text.Substring(mainDisplay.Text.Length - 1, 1);
+                mainDisplay.Text = last;
+                secondDisplay.Text = "";
+            }
+
             if (mainDisplay.Text.StartsWith("0") && mainDisplay.Text.Length > 1 && !symbolList.Any(c => mainDisplay.Text.EndsWith(c)))
             {
                 mainDisplay.Text = mainDisplay.Text.Remove(0, 1);
@@ -58,6 +66,7 @@ namespace Calculadora
                 signPressed = false;
             }
 
+            equalPressed = false;
             numberPressed = false;
         }
 
@@ -116,6 +125,11 @@ namespace Calculadora
         }
 
         private void allClear_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
+        private void clear()
         {
             mainDisplay.Text = "0";
             secondDisplay.Text = "";
@@ -176,6 +190,7 @@ namespace Calculadora
                     default: break;
                 }
             }
+            equalPressed = true;
         }
         private void addition(int result)
         {
