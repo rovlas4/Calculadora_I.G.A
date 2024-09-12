@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Calculadora
 {
@@ -296,6 +297,25 @@ namespace Calculadora
             {
                 System.IO.File.WriteAllText(saveFileDialog.FileName, historial.Text);
             }
+        }
+
+        private void open_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Archivos de texto|*.txt";
+            if (ofd.ShowDialog() == DialogResult.OK)
+                historial.Text = System.IO.File.ReadAllText(ofd.FileName);
+            openTotalSum();
+        }
+        private void openTotalSum()
+        {
+            string[] lines = historial.Lines;
+            int totalSum = 0;
+            foreach (string line in lines)
+            {
+
+            }
+            absoluteSum.Text = "SUMA = " + totalSum.ToString();
         }
     }
 }

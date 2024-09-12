@@ -50,6 +50,7 @@
             this.historial = new System.Windows.Forms.TextBox();
             this.absoluteSum = new System.Windows.Forms.TextBox();
             this.saveHistorial = new System.Windows.Forms.Button();
+            this.open = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // zero
@@ -252,10 +253,10 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(224, 463);
+            this.button1.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(319, 463);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 75);
+            this.button1.Size = new System.Drawing.Size(111, 75);
             this.button1.TabIndex = 20;
             this.button1.Text = "Historial";
             this.button1.UseVisualStyleBackColor = true;
@@ -284,20 +285,32 @@
             // 
             // saveHistorial
             // 
-            this.saveHistorial.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveHistorial.Location = new System.Drawing.Point(12, 463);
+            this.saveHistorial.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveHistorial.Location = new System.Drawing.Point(166, 463);
             this.saveHistorial.Name = "saveHistorial";
-            this.saveHistorial.Size = new System.Drawing.Size(206, 75);
+            this.saveHistorial.Size = new System.Drawing.Size(100, 75);
             this.saveHistorial.TabIndex = 23;
             this.saveHistorial.Text = "Guardar";
             this.saveHistorial.UseVisualStyleBackColor = true;
             this.saveHistorial.Click += new System.EventHandler(this.saveHistorial_Click);
+            // 
+            // open
+            // 
+            this.open.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.open.Location = new System.Drawing.Point(12, 463);
+            this.open.Name = "open";
+            this.open.Size = new System.Drawing.Size(100, 75);
+            this.open.TabIndex = 24;
+            this.open.Text = "Abrir";
+            this.open.UseVisualStyleBackColor = true;
+            this.open.Click += new System.EventHandler(this.open_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 600);
+            this.Controls.Add(this.open);
             this.Controls.Add(this.saveHistorial);
             this.Controls.Add(this.absoluteSum);
             this.Controls.Add(this.historial);
@@ -352,6 +365,7 @@
         private System.Windows.Forms.TextBox historial;
         private System.Windows.Forms.TextBox absoluteSum;
         private System.Windows.Forms.Button saveHistorial;
+        private System.Windows.Forms.Button open;
     }
 }
 
