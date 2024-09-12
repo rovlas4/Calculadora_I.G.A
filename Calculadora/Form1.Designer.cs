@@ -49,6 +49,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.historial = new System.Windows.Forms.TextBox();
             this.absoluteSum = new System.Windows.Forms.TextBox();
+            this.saveHistorial = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // zero
@@ -252,7 +253,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(118, 463);
+            this.button1.Location = new System.Drawing.Point(224, 463);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(206, 75);
             this.button1.TabIndex = 20;
@@ -281,11 +282,23 @@
             this.absoluteSum.TabIndex = 22;
             this.absoluteSum.Visible = false;
             // 
+            // saveHistorial
+            // 
+            this.saveHistorial.Font = new System.Drawing.Font("Consolas", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveHistorial.Location = new System.Drawing.Point(12, 463);
+            this.saveHistorial.Name = "saveHistorial";
+            this.saveHistorial.Size = new System.Drawing.Size(206, 75);
+            this.saveHistorial.TabIndex = 23;
+            this.saveHistorial.Text = "Guardar";
+            this.saveHistorial.UseVisualStyleBackColor = true;
+            this.saveHistorial.Click += new System.EventHandler(this.saveHistorial_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 600);
+            this.Controls.Add(this.saveHistorial);
             this.Controls.Add(this.absoluteSum);
             this.Controls.Add(this.historial);
             this.Controls.Add(this.button1);
@@ -338,6 +351,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox historial;
         private System.Windows.Forms.TextBox absoluteSum;
+        private System.Windows.Forms.Button saveHistorial;
     }
 }
 

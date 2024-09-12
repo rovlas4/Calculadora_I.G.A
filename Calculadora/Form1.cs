@@ -286,5 +286,16 @@ namespace Calculadora
                 absoluteSum.Visible = false;
             }
         }
+        private void saveHistorial_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+            saveFileDialog.Title = "Guardar Historial";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.File.WriteAllText(saveFileDialog.FileName, historial.Text);
+            }
+        }
     }
 }
