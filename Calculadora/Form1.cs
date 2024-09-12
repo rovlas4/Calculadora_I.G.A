@@ -304,8 +304,10 @@ namespace Calculadora
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Archivos de texto|*.txt";
             if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 historial.Text = System.IO.File.ReadAllText(ofd.FileName);
-            openTotalSum();
+                openTotalSum();
+            }
         }
         private void openTotalSum()
         {
@@ -313,7 +315,12 @@ namespace Calculadora
             int totalSum = 0;
             foreach (string line in lines)
             {
-
+                if (line.Length > 0) 
+                {
+                    int eqIndex = line.IndexOf('=');
+                    string stNum = line.Substring(eqIndex + 1, line.Length - eqIndex - 1);
+                    totalSum += Int32.Parse(stNum);
+                }
             }
             absoluteSum.Text = "SUMA = " + totalSum.ToString();
         }
