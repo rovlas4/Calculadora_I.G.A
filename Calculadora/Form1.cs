@@ -221,7 +221,15 @@ namespace Calculadora
                 totalSum += result;
                 absoluteSum.Text = "SUMA = " + totalSum.ToString();
             }
-            equalPressed = true;
+
+            if (mainDisplay.Text.Equals("0"))
+            {
+                equalPressed = false;
+            }
+            else
+            {
+                equalPressed = true;
+            }
         }
         private int addition(int result)
         {
@@ -323,6 +331,21 @@ namespace Calculadora
                 }
             }
             absoluteSum.Text = "SUMA = " + totalSum.ToString();
+            mainDisplay.Text = totalSum.ToString();
+            signPressed = false;
+            numberPressed = false;
+            equalPressed = false;
+            operation = 0;
+            totalSum = 0;
+            openClose = false;
+            equalRsult = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            historial.Text = "";
+            absoluteSum.Text = "SUMA = 0";
+            totalSum = 0;
         }
     }
 }
